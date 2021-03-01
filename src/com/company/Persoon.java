@@ -54,4 +54,13 @@ public class Persoon {
         return budget;
     }
 
+
+    public Game zoekGameOpNaam(String s) {
+        for (Game game: games) {
+            if (game.getNaam().equals(s)) {
+                return game;
+            }
+        }
+        return null;
+    }
 }
