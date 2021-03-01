@@ -16,6 +16,22 @@ public class Persoon {
         this.budget = budget;
     }
 
+    public ArrayList<Game> bepaalGamesNietInBezit(ArrayList<Game> teKoop) {
+        for (Game g : games) {
+            teKoop.removeIf(g::equals);
+        }
+        return teKoop;
+    }
+
+    public Game zoekGameOpNaam(String s) {
+        for (Game game: games) {
+            if (game.getNaam().equals(s)) {
+                return game;
+            }
+        }
+        return null;
+    }
+
     public boolean koop(Game game) {
         if (game.huidigeWaarde() <= budget) {
             for (Game g : games) {
@@ -41,6 +57,10 @@ public class Persoon {
         return false;
     }
 
+    public double getBudget() {
+        return budget;
+    }
+
     @Override
     public String toString() {
         String string = naam + " heeft een budget van €" + String.format("%.2f", budget) + " en bezit de volgende games:";
@@ -48,19 +68,5 @@ public class Persoon {
             string += "\n" + g;
         }
         return string.replace(".", ",");
-    }
-
-    public double getBudget() {
-        return budget;
-    }
-
-
-    public Game zoekGameOpNaam(String s) {
-        for (Game game: games) {
-            if (game.getNaam().equals(s)) {
-                return game;
-            }
-        }
-        return null;
     }
 }
